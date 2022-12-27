@@ -44,6 +44,9 @@ class ListCategoriesView(APIView):
 class CategoryView(APIView):
 
     def post(self, request):
+        '''
+            Manages the creation of new Categories
+        '''
         try:
             category_serializer = CreateCategorySerializer(data=request.data)
             if category_serializer.is_valid():
@@ -52,4 +55,4 @@ class CategoryView(APIView):
             else:
                 return Response({'success': False, 'error': category_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response({"success": False, "error": 'Something went wrong, try again'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'success': False, 'error': 'Something went wrong, try again'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

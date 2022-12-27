@@ -20,6 +20,9 @@ class CreateCategorySerializer(serializers.Serializer):
     description = serializers.CharField()
 
     def validate_name(self, value):
+        '''
+            Validates if name from body request is unique
+        '''
         category_query = Category.objects.filter(name=value)
         if (len(category_query) > 0):
             raise serializers.ValidationError(
@@ -27,6 +30,9 @@ class CreateCategorySerializer(serializers.Serializer):
         return value
 
     def create(self, validated_data):
+        '''
+            Once the validations are passed, the resource is created
+        '''
         new_category = Category(**validated_data)
         new_category.save()
         return new_category
