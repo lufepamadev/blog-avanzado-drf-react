@@ -10,7 +10,12 @@ ENVIRONMENT = env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+'''
+    The default SECRET_KEY value is obtained using a django secret key generator (https://djecrety.ir/)
+    as the value is saved as enviroment variable which is not accesible.
+'''
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', '*u1v06wkwnic(oxh)c-pj_(47#@7o(itu489mze7b(x$*d16fr')
 
 
 SITE_NAME = 'SoloPython'
@@ -207,18 +212,17 @@ AUTHENTICATION_BACKENDS = (
 
 FILE_UPLOAD_PERMISSIONS = 0o640
 
-EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 if not DEBUG:
-    DEFAULT_FROM_EMAIL="Uridium <mail@uridium.network>"
-    EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+    DEFAULT_FROM_EMAIL = "Uridium <mail@uridium.network>"
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = env('EMAIL_HOST')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = env('EMAIL_PORT')
     EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 
-    
     # django-ckeditor will not work with S3 through django-storages without this line in settings.py
     AWS_QUERYSTRING_AUTH = False
 
@@ -226,7 +230,6 @@ if not DEBUG:
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-
 
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
