@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Category
 from rest_framework.pagination import PageNumberPagination
+from .serializers import CreateCategorySerializer
 
 
 class ListCategoriesView(APIView):
@@ -38,3 +39,17 @@ class ListCategoriesView(APIView):
             return Response({'categories': result}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'No categories found'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class CategoryView(APIView):
+
+    def post(self, request):
+        try:
+            category_serializer = CreateCategorySerializer(data=request.data)
+            if category_serializer.is_valid():
+                category_serializer.save()
+                return Response({'success': True}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'success': False, 'error': category_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({"success": False, "error": 'Something went wrong, try again'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
