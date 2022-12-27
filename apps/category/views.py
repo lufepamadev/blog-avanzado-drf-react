@@ -8,6 +8,11 @@ from rest_framework.pagination import PageNumberPagination
 from .serializers import CreateCategorySerializer
 
 
+'''
+    The test classes for this Views can be found in tests.py file of this Django app.
+'''
+
+
 class ListCategoriesView(APIView):
 
     def get(self, request, format=None):
@@ -43,7 +48,7 @@ class ListCategoriesView(APIView):
 
 class CategoryView(APIView):
 
-    def post(self, request):
+    def post(self, request, format=None):
         '''
             Manages the creation of new Categories
         '''
