@@ -18,6 +18,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    @property
     def get_thumbnail(self):
         if self.thumbnail:
             return self.thumbnail.url

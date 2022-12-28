@@ -26,7 +26,7 @@ class CreateCategorySerializer(serializers.Serializer):
         category_query = Category.objects.filter(name=value)
         if (len(category_query) > 0):
             raise serializers.ValidationError(
-                'The name is already in use, please try again')
+                'The category name is already in use, please try again')
         return value
 
     def create(self, validated_data):
