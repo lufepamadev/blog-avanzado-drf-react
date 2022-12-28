@@ -16,6 +16,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CreateCategorySerializer(serializers.Serializer):
+
     name = serializers.CharField(max_length=255)
     description = serializers.CharField()
 

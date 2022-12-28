@@ -16,6 +16,7 @@ from .serializers import CreateCategorySerializer
 class ListCategoriesView(APIView):
 
     def get(self, request, format=None):
+
         if Category.objects.all().exists():
             categories = Category.objects.all()
 

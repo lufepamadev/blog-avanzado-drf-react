@@ -54,12 +54,7 @@ class CategoryTestCase(TestCase):
         for cat in category_list:
             if (len(cat['sub_categories']) > 0):
                 # If one item accomplish the requirements, all items will do too
-                cont = {
-                    'id',
-                    'name',
-                    'thumbnail',
-                    'description'
-                }
+
                 self.assertIsNotNone(cat['sub_categories'][0]['id'])
                 self.assertIsNotNone(cat['sub_categories'][0]['name'])
                 self.assertIsNotNone(cat['sub_categories'][0]['thumbnail'])
