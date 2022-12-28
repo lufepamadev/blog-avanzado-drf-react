@@ -22,7 +22,7 @@ class CreateCategorySerializer(serializers.Serializer):
 
     def validate_name(self, value):
         '''
-            Validates if name from body request is unique
+            Validates if name attribute from body request is unique
         '''
         category_query = Category.objects.filter(name=value)
         if (len(category_query) > 0):

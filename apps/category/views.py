@@ -16,7 +16,9 @@ from .serializers import CreateCategorySerializer
 class ListCategoriesView(APIView):
 
     def get(self, request, format=None):
-
+        '''
+            In order to simplify this view, I would rather move this logic into serializer class
+        '''
         if Category.objects.all().exists():
             categories = Category.objects.all()
 

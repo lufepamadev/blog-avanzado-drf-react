@@ -31,34 +31,33 @@ class CategoryTestCase(TestCase):
 
     def test_parameters_in_get_category_list_request(self):
         '''
-            Check if the returned parameters in category list request are correct
+            Check if the returned parameters in category list request are correct,
+            they must include id, name, thumbnail, description and sub_categories
         '''
         category_list = self.response.json()['categories']
-        # If one item accomplish the requirements, all items will do too
-        if (len(category_list) > 0):
-            first_item = category_list[0]
-            self.assertIsNotNone(first_item['id'])
-            self.assertIsNotNone(first_item['name'])
-            self.assertIsNotNone(first_item['thumbnail'])
-            self.assertIsNotNone(first_item['description'])
-            self.assertIsNotNone(first_item['sub_categories'])
+
+        for cat in category_list:
+            self.assertIsNotNone(cat['id'])
+            self.assertIsNotNone(cat['name'])
+            self.assertIsNotNone(cat['thumbnail'])
+            self.assertIsNotNone(cat['description'])
+            self.assertIsNotNone(cat['sub_categories'])
 
     def test_parameters_in_sub_categories_key_in_get_category_list_request(self):
         '''
             Check if the subcategory key of the returned category list contains 
-            the needed parameters.
+            the needed parameters which are id, name, thumbnail and description.
         '''
         # Obtain category list
         category_list = self.response.json()['categories']
 
         for cat in category_list:
             if (len(cat['sub_categories']) > 0):
-                # If one item accomplish the requirements, all items will do too
-
-                self.assertIsNotNone(cat['sub_categories'][0]['id'])
-                self.assertIsNotNone(cat['sub_categories'][0]['name'])
-                self.assertIsNotNone(cat['sub_categories'][0]['thumbnail'])
-                self.assertIsNotNone(cat['sub_categories'][0]['description'])
+                for sub_cat in cat['sub_categories']:
+                    self.assertIsNotNone(sub_cat['id'])
+                    self.assertIsNotNone(sub_cat['name'])
+                    self.assertIsNotNone(sub_cat['thumbnail'])
+                    self.assertIsNotNone(sub_cat['description'])
 
     def test_creation_new_category(self):
         '''
