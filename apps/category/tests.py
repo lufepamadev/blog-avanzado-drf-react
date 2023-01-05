@@ -13,10 +13,10 @@ class CategoryTestCase(TestCase):
         self.category_test = Category.objects.create(name='Test_name', description='Test_Description',
                                                      thumbnail='/media/media/categories/WhatsApp_Image_2022-10-26_at_15.09.05_2_wcK09Jr.jpeg')
         self.category_demo = Category.objects.create(name='Demo_name', description='Demo_Description',
-                                                     thumbnail='/media/media/categories/WhatsApp_Image_2022-10-26_at_15.09.05_2_wcK09Jr.jpeg'
+                                                     thumbnail='https://cdn.shopify.com/s/files/1/0648/0124/3361/files/logo-light.png?v=1656315496&width=100'
                                                      )
         self.subcategory_of_a_category = Category.objects.create(parent=self.category_test, name='Subcategory_name', description='Subcategory_Description',
-                                                                 thumbnail='/media/media/categories/WhatsApp_Image_2022-10-26_at_15.09.05_2_wcK09Jr.jpeg'
+                                                                 thumbnail='https://cdn.shopify.com/s/files/1/0648/0124/3361/files/logo-light.png?v=1656315496&width=100'
                                                                  )
 
         self.client = Client()

@@ -10,7 +10,8 @@ class Category(models.Model):
     parent = models.ForeignKey(
         'self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=255, unique=True)
-    thumbnail = models.ImageField(upload_to='media/categories/')
+    thumbnail = models.ImageField(
+        upload_to='media/categories/', blank=True, null=True)
 
     # Adds text field for descrition with no lenght limit and it is optional
     description = models.TextField(blank=True, null=True)
@@ -22,4 +23,4 @@ class Category(models.Model):
     def get_thumbnail(self):
         if self.thumbnail:
             return self.thumbnail.url
-        return ''
+        return 'https://cdn.shopify.com/s/files/1/0648/0124/3361/files/logo-light.png?v=1656315496&width=100'
